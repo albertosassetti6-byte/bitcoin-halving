@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>BTC://TERMINAL — Bitcoin Halving Countdown</title>
+
+  <meta name="description" content="Terminale retro in tempo reale con countdown al prossimo halving di Bitcoin, altezza blocco, subsidy e storico completo." />
+  <meta name="theme-color" content="#050705" />
+  <meta name="color-scheme" content="dark" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="BTC://TERMINAL — Bitcoin Halving Countdown" />
+  <meta property="og:description" content="Countdown live al prossimo halving di Bitcoin, in un terminale." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/bitcoin.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Overlay effetto CRT -->
+  <div class="crt" aria-hidden="true"></div>
+
+  <main class="terminal" role="application" aria-label="Terminale Bitcoin">
+
+    <!-- Barra del titolo -->
+    <header class="term-bar">
+      <div class="dots" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="term-title">user@bitcoin: ~/halving — bash</div>
+      <div class="term-clock">
+        <span class="led" aria-hidden="true"></span>
+        <time id="clock">--:--:--</time>
+      </div>
+    </header>
+
+    <!-- Pannello countdown -->
+    <section class="hero">
+      <p class="cmdline">
+        <span class="sym">$</span>
+        <span class="cmd">./countdown --next-halving --live</span>
+      </p>
+
+      <div class="countdown" id="countdown">
+        <div class="unit">
+          <span class="value" id="days">---</span>
+          <span class="label">DAYS</span>
+        </div>
+        <div class="unit">
+          <span class="value" id="hours">--</span>
+          <span class="label">HOURS</span>
+        </div>
+        <div class="unit">
+          <span class="value" id="minutes">--</span>
+          <span class="label">MINUTES</span>
+        </div>
+        <div class="unit">
+          <span class="value" id="seconds">--</span>
+          <span class="label">SECONDS</span>
+        </div>
+      </div>
+
+      <div class="meta">
+        <span>EPOCH <b id="epoch">--</b></span>
+        <span>TARGET BLOCK <b id="target">--</b></span>
+        <span>SUBSIDY <b><span id="reward-before">--</span> <i>&rarr;</i> <span id="reward-after">--</span> BTC</b></span>
+      </div>
+
+      <div class="bar" role="progressbar" aria-label="Progresso verso il prossimo halving">
+        <div class="fill" id="fill"></div>
+      </div>
+
+      <div class="meta small">
+        <span>HEIGHT <b id="block">--</b></span>
+        <span id="remaining-blocks">--</span>
+        <span id="progress-pct">--</span>
+        <span id="net-status" class="status offline">OFFLINE</span>
+      </div>
+    </section>
+
+    <!-- Output del terminale -->
+    <section class="log" id="log" aria-live="polite" aria-label="Output del terminale"></section>
+
+    <!-- Riga di input -->
+    <form class="input-line" id="form" autocomplete="off" novalidate>
+      <label class="prompt" for="cmd">user@bitcoin:~$</label>
+      <input
+        id="cmd"
+        name="cmd"
+        type="text"
+        spellcheck="false"
+        autocapitalize="off"
+        autocorrect="off"
+        autocomplete="off"
+        enterkeyhint="send"
+        placeholder="type 'help'…"
+        aria-label="Comando"
+      />
+    </form>
+
+  </main>
+
+  <noscript>
+    <p style="color:#3dff88;font-family:monospace;text-align:center;padding:24px">
+      Questo terminale richiede JavaScript per funzionare.
+    </p>
+  </noscript>
+
+  <script src="script.js"></script>
+</body>
+</html>
